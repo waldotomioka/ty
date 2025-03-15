@@ -1,0 +1,61 @@
+<script>
+function calculateBMI(weight, height) {
+    return weight / (height * height);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    var bmiCalculator = document.getElementById("bmi-calculator");
+    if (bmiCalculator) {
+        bmiCalculator.addEventListener("input", function(e) {
+            var weight = document.getElementById("weight").value;
+            var height = document.getElementById("height").value;
+            var bmi = calculateBMI(weight, height);
+            document.getElementById("bmi-result").innerHTML = "Your BMI is " + bmi;
+        });
+    }
+});
+
+// Login page access control
+document.addEventListener("DOMContentLoaded", function() {
+    var loginPage = document.getElementById("login-page");
+    if (loginPage) {
+        loginPage.addEventListener("submit", function(e) {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            if (username === "waldo" && password === "123") {
+        // Allow access to the BMI calculator page
+        window.location.href = "https://yourwebsite.com/bmi-calculator.html";
+    } else {
+        alert("Incorrect username or password");
+    }
+});
+
+// BMI calculator page
+document.addEventListener("DOMContentLoaded", function() {
+    var bmiCalculatorPage = document.getElementById("bmi-calculator-page");
+    if (bmiCalculatorPage) {
+        bmiCalculatorPage.addEventListener("load", function(e) {
+            var weight = document.getElementById("weight").value;
+            var height = document.getElementById("height").value;
+            var bmi = calculateBMI(weight, height);
+            document.getElementById("bmi-result").innerHTML = "Your BMI is " + bmi;
+        });
+    }
+});
+
+// Login page
+<div id="login-page">
+    <form id="login-form">
+        <input type="text" id="username" name="username">
+        <input type="password" id="password" name="password">
+        <button type="submit" id="login-button">Login</button>
+    </form>
+</div>
+
+// BMI calculator page
+<div id="bmi-calculator-page">
+    <input type="number" id="weight" name="weight">
+    <input type="number" id="height" name="height">
+    <button type="button" id="calculate-bmi">Calculate BMI</button>
+    <div id="bmi-result"></div>
+</div>
